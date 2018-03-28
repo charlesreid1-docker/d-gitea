@@ -21,3 +21,16 @@ On the host machine, you can access named data volumes at
 `/var/lib/docker/volumes/gitea_gitea/_data`
 or using `docker cp`.
 
+Directory structure for host-mounted gitea directory:
+
+```
+gitea
+├── git
+├── gitea
+│   ├── conf
+│   │   └── app.ini
+│   └── log
+└── ssh [error opening dir]
+```
+
+
