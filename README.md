@@ -128,12 +128,24 @@ The dump functionality creates a zip with
 the following struture:
 
 ```
+gitea-repo.zip
 gitea-db.sql
 custom/
 log/
 ```
 
-For the real gitea server, the `custom/` dir should be at:
+When the `gitea-repo.zip` folder is unzipped, it generates a `repositories/` folder
+containing the contents of every git repo in the gitea site.
+
+For the real gitea server, here is where these should go:
+
+The `repositories/` dir should be at:
+
+```
+<gitea-base-dir>/repositories
+```
+
+The `custom/` dir should be at:
 
 ```
 <gitea-base-dir>/bin/custom
@@ -150,4 +162,6 @@ The log should be at:
 ```
 <gitea-base-dir>/log
 ```
+
+
 
