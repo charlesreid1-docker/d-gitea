@@ -19,10 +19,10 @@ SSL_MODE = disable
 PATH     = /data/gitea/gitea.db
 
 [repository]
-ROOT               = /data/gitea/repositories
+ROOT               = /data/git/repositories
 PREFERRED_LICENSES = MIT License
 
-; This gets rid of the HTTPS option to check out repos...
+; This gets rid of the HTTP option to check out repos...
 ;DISABLE_HTTP_GIT = true
 [server]
 PROTOCOL     = http
@@ -31,7 +31,9 @@ DOMAIN       = git.charlesreid1.blue
 #KEY_FILE     = /www/gitea/certs/key.pem
 SSH_DOMAIN   = git.charlesreid1.blue
 HTTP_PORT    = 3000
-ROOT_URL     = http://git.charlesreid1.blue
+HTTP_ADDR    = 0.0.0.0
+;ROOT_URL     = http://git.charlesreid1.blue
+ROOT_URL     = %(PROTOCOL)s://%(DOMAIN)s:%(HTTP_PORT)s/
 DISABLE_SSH  = false
 SSH_PORT     = 22
 OFFLINE_MODE = false
@@ -52,20 +54,39 @@ REQUIRE_SIGNIN_VIEW    = false
 [picture]
 DISABLE_GRAVATAR        = true
 ENABLE_FEDERATED_AVATAR = false
+AVATAR_UPLOAD_PATH      = /data/gitea/avatars
 
 [session]
 PROVIDER = file
 
 [log]
 MODE      = file
+; Either "Trace", "Debug", "Info", "Warn", "Error", "Critical", default is "Trace"
 LEVEL     = Info
 ROOT_PATH = /data/gitea/log
 
+; For "file" mode only
+[log.file]
+LEVEL          = 
+; This enables automated log rotate(switch of following options), default is true
+LOG_ROTATE     = true
+; Max line number of single file, default is 1000000
+MAX_LINES      = 1000000
+; Max size shift of single file, default is 28 means 1 << 28, 256MB
+MAX_SIZE_SHIFT = 28
+; Segment log daily, default is true
+DAILY_ROTATE   = true
+; Expired days of log file(delete after max days), default is 7
+MAX_DAYS       = 7
+
+[cron.archive_cleanup]
+ENABLED      = false
+
 [security]
 INSTALL_LOCK        = true
-SECRET_KEY          = jh7!*&jP0E
+SECRET_KEY          = REPLACEME_SECRETKEY_SECRET
 MIN_PASSWORD_LENGTH = 6
-INTERNAL_TOKEN      = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE1MDg2OTMyOTV9.9X6KYLVJ_-1EkXvipqnmIc9wPn-BXGRG5RVcA3AkEKU
+INTERNAL_TOKEN      = REPLACEME_INTERNALTOKEN_SECRET
 
 [other]
 SHOW_FOOTER_BRANDING           = false

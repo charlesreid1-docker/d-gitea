@@ -1,1 +1,3 @@
-gitea/
+*.secret
+app.ini
+app.ini.backup
