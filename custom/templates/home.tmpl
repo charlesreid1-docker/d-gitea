@@ -1,0 +1,52 @@
+{{template "base/head" .}}
+<div class="home">
+	<div class="ui stackable middle very relaxed page grid">
+		<div class="sixteen wide center aligned centered column">
+			<div>
+				<img class="logo" src="{{AppSubUrl}}/img/cat.jpg" />
+			</div>
+			<div class="hero">
+				<h1 class="ui icon header title">
+					git.charlesreid1.blue
+				</h1>
+			</div>
+		</div>
+	</div>
+	<div class="ui stackable middle very relaxed page grid">
+		<div class="eight wide center column">
+			<h1 class="hero ui icon header">
+				<i class="octicon octicon-flame"></i> Easy to install
+			</h1>
+			<p class="large">
+				Simply <a target="_blank" rel="noopener" href="https://docs.gitea.io/en-us/install-from-binary/">run the binary</a> for your platform. Or ship Gitea with <a target="_blank" rel="noopener" href="https://github.com/go-gitea/gitea/tree/master/docker">Docker</a> or <a target="_blank" rel="noopener" href="https://github.com/alvaroaleman/ansible-gitea/blob/master/Vagrantfile">Vagrant</a>, or get it <a target="_blank" rel="noopener" href="https://docs.gitea.io/en-us/install-from-package/">packaged</a>.
+			</p>
+		</div>
+		<div class="eight wide center column">
+			<h1 class="hero ui icon header">
+				<i class="octicon octicon-device-desktop"></i> Cross-platform
+			</h1>
+			<p class="large">
+				Gitea runs anywhere <a target="_blank" rel="noopener" href="http://golang.org/">Go</a> can compile for: Windows, Mac OS X, Linux, ARM, etc. Choose the one you love!
+			</p>
+		</div>
+	</div>
+	<div class="ui stackable middle very relaxed page grid">
+		<div class="eight wide center column">
+			<h1 class="hero ui icon header">
+				<i class="octicon octicon-rocket"></i> Lightweight
+			</h1>
+			<p class="large">
+				Gitea has low minimal requirements and can run on an inexpensive Raspberry Pi. Save your machine energy!
+			</p>
+		</div>
+		<div class="eight wide center column">
+			<h1 class="hero ui icon header">
+				<i class="octicon octicon-code"></i> Open Source
+			</h1>
+			<p class="large">
+				It's all on <a target="_blank" rel="noopener" href="https://github.com/go-gitea/gitea/">GitHub</a>! Join us by contributing to make this project even better. Don't be shy to be a contributor!
+			</p>
+		</div>
+	</div>
+</div>
+{{template "base/footer" .}}
