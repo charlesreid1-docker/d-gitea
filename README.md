@@ -4,28 +4,18 @@ Docker files for running gitea
 
 [gitea with docker - documentation](https://docs.gitea.io/en-us/install-with-docker/)
 
-## custom gitea files
 
-the main use of this container is part of the larger charlesreid1 pod,
-so the main purpose of this repo is to store custom gitea files.
+## Table of Contents
 
-These are stored in `custom/`.
+* container directory structure
+* files mounted into container
+* using the `docker-compose.yml` file
+* configuring gitea with `app.ini`
+* customizing gitea with custom files
+* backing up and restoring gitea
 
-`custom/` should map to `/data/gitea/` inside the container.
 
-## using the compose file
-
-to get this thing up and running:
-
-```
-$ docker-compose up
-```
-
-Now visit `<server-ip>:3000`. You will be presented with a configuration page.
-Set up the gitea instance. This will automatically populate the directory 
-structure. See below for more info.
-
-## directory structure
+## Container Directory Structure
 
 Any configuration of gitea will deposit files into `data/`.
 
@@ -70,71 +60,129 @@ After adding data:
 ```
 gitea
 ├── git
-│   └── repositories
-│       └─e charlesreid1
-│           └── oieruoweiur.git
-│               ├── branches
-│               ├── config
-│               ├── description
-│               ├── HEAD
-│               ├── hooks
-│               │   ├── applypatch-msg.sample
-│               │   ├── commit-msg.sample
-│               │   ├── post-receive
-│               │   ├── post-receive.d
-│               │   │   └── gitea
-│               │   ├── post-update.sample
-│               │   ├── pre-applypatch.sample
-│               │   ├── pre-commit.sample
-│               │   ├── prepare-commit-msg.sample
-│               │   ├── pre-push.sample
-│               │   ├── pre-rebase.sample
-│               │   ├── pre-receive
-│               │   ├── pre-receive.d
-│               │   │   └── gitea
-│               │   ├── pre-receive.sample
-│               │   ├── update
-│               │   ├── update.d
-│               │   │   └── gitea
-│               │   └── update.sample
-│               ├── info
-│               │   ├── exclude
-│               │   └── refs
-│               ├── objects
-│               │   ├── info
-│               │   │   └── packs
-│               │   └── pack
-│               └── refs
-│                   ├── heads
-│                   └── tags
+│   └── repositories
+│       └─e charlesreid1
+│           └── oieruoweiur.git
+│               ├── branches
+│               ├── config
+│               ├── description
+│               ├── HEAD
+│               ├── hooks
+│               │   ├── applypatch-msg.sample
+│               │   ├── commit-msg.sample
+│               │   ├── post-receive
+│               │   ├── post-receive.d
+│               │   │   └── gitea
+│               │   ├── post-update.sample
+│               │   ├── pre-applypatch.sample
+│               │   ├── pre-commit.sample
+│               │   ├── prepare-commit-msg.sample
+│               │   ├── pre-push.sample
+│               │   ├── pre-rebase.sample
+│               │   ├── pre-receive
+│               │   ├── pre-receive.d
+│               │   │   └── gitea
+│               │   ├── pre-receive.sample
+│               │   ├── update
+│               │   ├── update.d
+│               │   │   └── gitea
+│               │   └── update.sample
+│               ├── info
+│               │   ├── exclude
+│               │   └── refs
+│               ├── objects
+│               │   ├── info
+│               │   │   └── packs
+│               │   └── pack
+│               └── refs
+│                   ├── heads
+│                   └── tags
 ├── gitea
-│   ├── conf
-│   │   └── app.ini
-│   ├── gitea.db
-│   ├── indexers
-│   │   └── issues.bleve
-│   │       ├── index_meta.json
-│   │       └── store
-│   ├── lfs
-│   ├── log
-│   │   ├── gitea.log
-│   │   ├── http.log
-│   │   └── xorm.log
-│   └── sessions
-│       └── oauth2
+│   ├── conf
+│   │   └── app.ini
+│   ├── gitea.db
+│   ├── indexers
+│   │   └── issues.bleve
+│   │       ├── index_meta.json
+│   │       └── store
+│   ├── lfs
+│   ├── log
+│   │   ├── gitea.log
+│   │   ├── http.log
+│   │   └── xorm.log
+│   └── sessions
+│       └── oauth2
 └── ssh [error opening dir]
 
 25 directories, 29 files
 ```
 
-## backup and restore
+## Files Mounted Into Container
+
+### app.ini
+
+app.ini needs to be mounted into the container.
+
+created app.ini here with two secrets scrubbed:
+
+* an internal token secret contained in `internal_token.secret`
+* a secret key secret contained in `secret_key.secret`
+
+The `make_app_ini.sh` script will take the 
+version-control-safe `api.sample` and use sed
+to find and replace the secret keys with their values.
+
+To run:
+
+```
+./make_app_ini.sh
+```
+
+which will generate `app.ini`, a file ignored by git.
+
+The docker-compose file will automatically mount 
+a file named `app.ini` in the current directory
+
+### custom directory
+
+The `custom/` directory should also be mounted in the container.
+The custom directory contains templates and pages.
+
+The docker-compose file will automatically mount the `custom/` directory.
+
+## Using the `docker-compose.yml` File
+
+to get this thing up and running:
+
+```
+$ docker-compose up
+```
+
+Now visit `<server-ip>:3000`. You will be presented with a configuration page.
+Set up the gitea instance. This will automatically populate the directory 
+structure. See below for more info.
+
+## Configuring Gitea with `app.ini`
+
+## Customizing Gitea with Custom Files
+
+the main use of this container is part of the larger charlesreid1 pod,
+so the main purpose of this repo is to store custom gitea files.
+
+These are stored in `custom/`.
+
+`custom/` should map to `/data/gitea/` inside the container.
+
+## Backing Up and Restoring Gitea
 
 Fortunately, gitea provides dump functionality.
 
 Unfortunately, there is no restore functionality.
 
-The dump functionality creates a zip with
-the following struture:
+### gitea dump directory structure
+
+The built-in `gitea dump` functionality will create a zip
+that contains the following directory structure:
 
 ```
 gitea-repo.zip
@@ -171,6 +219,38 @@ The log should be at:
 ```
 <gitea-base-dir>/log
 ```
+
+### gitea dump and restore scripts
+
+Our gitea backup script accepts a single argument,
+which is the location that the gite data should be 
+dumped to.
+
+TODO: add avatars to dump.
+
+Our gitea restore script takes two arguments: the first 
+is the zip file from gitea dump, the second is the zip 
+file containing user avatars.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
