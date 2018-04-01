@@ -4,6 +4,15 @@ Docker files for running gitea
 
 [gitea with docker - documentation](https://docs.gitea.io/en-us/install-with-docker/)
 
+## custom gitea files
+
+the main use of this container is part of the larger charlesreid1 pod,
+so the main purpose of this repo is to store custom gitea files.
+
+These are stored in `custom/`.
+
+`custom/` should map to `/data/gitea/` inside the container.
+
 ## using the compose file
 
 to get this thing up and running:
