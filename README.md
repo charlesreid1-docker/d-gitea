@@ -7,6 +7,7 @@ Docker files for running gitea
 
 ## Table of Contents
 
+* secrets
 * container directory structure
 * files mounted into container
 * using the `docker-compose.yml` file
@@ -14,6 +15,22 @@ Docker files for running gitea
 * customizing gitea with custom files
 * backing up and restoring gitea
 
+## Secrets
+
+There are two secrets to set in `app.ini` before running gitea:
+the internal token and the secret key.
+
+These can be set in `*.secret` files:
+
+```
+internal_token.secret
+secret_key.secret
+```
+
+The contents should be the value of the variable 
+you wish to use in `app.ini`.
+
+These files are not tracked by git.
 
 ## Container Directory Structure
 
