@@ -2,51 +2,157 @@
 <div class="home">
 	<div class="ui stackable middle very relaxed page grid">
 		<div class="sixteen wide center aligned centered column">
-			<div>
-				<img class="logo" src="{{AppSubUrl}}/img/cat.jpg" />
 			</div>
 			<div class="hero">
 				<h1 class="ui icon header title">
-					git.charlesreid1.blue
+					git.charlesreid1.com
 				</h1>
+                <!--
+				<h2>{{.i18n.Tr "app_desc"}}</h2>
+                -->
 			</div>
-		</div>
-	</div>
-	<div class="ui stackable middle very relaxed page grid">
-		<div class="eight wide center column">
-			<h1 class="hero ui icon header">
-				<i class="octicon octicon-flame"></i> Easy to install
-			</h1>
-			<p class="large">
-				Simply <a target="_blank" rel="noopener" href="https://docs.gitea.io/en-us/install-from-binary/">run the binary</a> for your platform. Or ship Gitea with <a target="_blank" rel="noopener" href="https://github.com/go-gitea/gitea/tree/master/docker">Docker</a> or <a target="_blank" rel="noopener" href="https://github.com/alvaroaleman/ansible-gitea/blob/master/Vagrantfile">Vagrant</a>, or get it <a target="_blank" rel="noopener" href="https://docs.gitea.io/en-us/install-from-package/">packaged</a>.
-			</p>
-		</div>
-		<div class="eight wide center column">
-			<h1 class="hero ui icon header">
-				<i class="octicon octicon-device-desktop"></i> Cross-platform
-			</h1>
-			<p class="large">
-				Gitea runs anywhere <a target="_blank" rel="noopener" href="http://golang.org/">Go</a> can compile for: Windows, Mac OS X, Linux, ARM, etc. Choose the one you love!
-			</p>
-		</div>
-	</div>
-	<div class="ui stackable middle very relaxed page grid">
-		<div class="eight wide center column">
-			<h1 class="hero ui icon header">
-				<i class="octicon octicon-rocket"></i> Lightweight
-			</h1>
-			<p class="large">
-				Gitea has low minimal requirements and can run on an inexpensive Raspberry Pi. Save your machine energy!
-			</p>
-		</div>
-		<div class="eight wide center column">
-			<h1 class="hero ui icon header">
-				<i class="octicon octicon-code"></i> Open Source
-			</h1>
-			<p class="large">
-				It's all on <a target="_blank" rel="noopener" href="https://github.com/go-gitea/gitea/">GitHub</a>! Join us by contributing to make this project even better. Don't be shy to be a contributor!
-			</p>
+			<div>
+                <!--
+				<img class="logo" src="{{AppSubUrl}}/img/gitea-lg.png" />
+                -->
+                <h3 class="ui icon header title"><b>@charlesreid1 activity graph:</b></h3>
+                <div id="calendar"></div>
 		</div>
 	</div>
 </div>
+
+<!-- gitea source: templates/base/head -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+
+<script>
+
+//<script type="text/javascript">
+
+var width = 700,
+    height = 90,
+    cellSize = 12;
+
+
+// big integers
+var formatStuff = d3.format(",");
+
+
+/*
+TEH COLORRRZZZZ
+*/
+var realBackgroundColor = "#fff";//"#272b30";
+var tileBackgroundColor = realBackgroundColor;//"#3a3a3a";
+var tileStrokeColor     = "#ccc";
+var monthStrokeColor    = "#aaa";
+
+var color = d3.scaleQuantize()
+    .domain([0, 35])
+    .range([ "#ffeda0", "#fed976", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c", "#bd0026", "#800026" ]);
+// red and yeller
+
+
+    //.range(["#4d2b4b","#5a3961","#684777","#77558f","#8463a5","#cc9189","#fba25c","#f78e43","#f47b2b","#f16913"]);
+// purple and orange
+
+    //.range(["#004a4a","#0b6f6f","#169494","#29a8a8","#4c9090","#717777","#945f5f","#b84747","#db2f2f","#ff1717"]);
+// seafoam green blue to candy red
+
+
+/*
+Make the canvas
+*/
+var svg = d3.select("div#calendar")
+  .selectAll("svg")
+  .data(d3.range(2014, 2019).reverse())
+  .enter().append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("transform", "translate(" + ((width - cellSize * 53) / 2) + "," + (height - cellSize * 7 - 1) + ")");
+
+
+
+/*
+Write the years
+*/
+svg.append("text")
+    .attr("transform", "translate(-6," + cellSize * 3.5 + ")rotate(-90)")
+    .attr("font-family", "sans-serif")
+    .attr("font-size", 10)
+    .attr("fill", "#bbb")
+    .attr("text-anchor", "middle")
+    .text(function(d) { return d; });
+
+
+
+
+/*
+Draw the tiles representing days of the year
+(also draw tile outlines)
+*/
+var rect = svg.append("g")
+    .attr("fill",   tileBackgroundColor)
+    .attr("stroke", tileStrokeColor)
+  .selectAll("rect")
+  .data(function(d) { return d3.timeDays(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+  .enter().append("rect")
+    .attr("width", cellSize)
+    .attr("height", cellSize)
+    .attr("x", function(d) { return d3.timeWeek.count(d3.timeYear(d), d) * cellSize; })
+    .attr("y", function(d) { return d.getDay() * cellSize; })
+    .datum(d3.timeFormat("%Y-%m-%d"));
+
+
+
+/*
+Draw outlines of groups representing months
+*/
+svg.append("g")
+    .attr("fill", "none")
+    .attr("stroke", monthStrokeColor)
+  .selectAll("path")
+  .data(function(d) { return d3.timeMonths(new Date(d, 0, 1), new Date(d + 1, 0, 1)); })
+  .enter().append("path")
+    .attr("d", pathMonth);
+
+
+
+/*
+Load up the csv file
+*/
+
+d3.csv("data/git/raw/master/commit_counts.csv", function(error, csv) {
+
+  if (error) throw error;
+
+  /*
+  This is where you decide what values to plot
+  */
+  var data = d3.nest()
+        .key(function(d) { return d.date; })
+        .rollup(function(d) {
+            return d[0].commits;
+        })
+        .object(csv);
+
+  rect.filter(function(d) { return d in data; })
+        .attr("fill", function(d) { return color(data[d]); })
+        .append("title")
+        .text(function(d) { return d + ": " + formatStuff(data[d]); });
+});
+
+function pathMonth(t0) {
+  var t1 = new Date(t0.getFullYear(), t0.getMonth() + 1, 0),
+      d0 = t0.getDay(), w0 = d3.timeWeek.count(d3.timeYear(t0), t0),
+      d1 = t1.getDay(), w1 = d3.timeWeek.count(d3.timeYear(t1), t1);
+  return "M" + (w0 + 1) * cellSize + "," + d0 * cellSize
+      + "H" + w0 * cellSize + "V" + 7 * cellSize
+      + "H" + w1 * cellSize + "V" + (d1 + 1) * cellSize
+      + "H" + (w1 + 1) * cellSize + "V" + 0
+      + "H" + (w0 + 1) * cellSize + "Z";
+}
+
+</script>
+
+
 {{template "base/footer" .}}
