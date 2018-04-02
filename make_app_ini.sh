@@ -10,4 +10,4 @@ set -x
 # 
 cat app.ini.sample \
   | sed 's/REPLACEME_INTERNALTOKEN_SECRET/'$(cat internal_token.secret)'/g' \
-  | sed 's/REPLACEME_SECRETKEY_SECRET/'$(cat secret_key.secret)'/g'  > app.ini
+  | sed 's/REPLACEME_SECRETKEY_SECRET/'$(cat secret_key.secret)'/g'  > custom/conf/app.ini
