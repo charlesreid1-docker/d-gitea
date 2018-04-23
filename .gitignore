@@ -1,3 +1,4 @@
+site
 *.secret
 app.ini
 app.ini.backup
