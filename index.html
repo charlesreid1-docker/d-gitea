@@ -11,6 +11,8 @@
       <meta http-equiv="x-ua-compatible" content="ie=edge">
       
       
+        <link rel="canonical" href="https://pages.charlesreid1.com/d-gitea/">
+      
       
       
         <meta name="lang:clipboard.copy" content="Copy to clipboard">
@@ -85,7 +87,7 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="." title="d-gitea" class="md-header-nav__button md-logo">
+        <a href="https://pages.charlesreid1.com/d-gitea" title="d-gitea" class="md-header-nav__button md-logo">
           
             <i class="md-icon">input</i>
           
@@ -139,6 +141,24 @@
         
       </div>
       
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+
+  <a href="https://git.charlesreid1.com/docker/d-gitea" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      d-gitea
+    </div>
+  </a>
+
+          </div>
+        </div>
+      
     </div>
   </nav>
 </header>
@@ -163,6 +183,22 @@
     </span>
     d-gitea
   </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+
+  <a href="https://git.charlesreid1.com/docker/d-gitea" title="Go to repository" class="md-source" data-md-source="">
+    
+    <div class="md-source__repository">
+      d-gitea
+    </div>
+  </a>
+
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -478,10 +514,10 @@
               
                 
                 
-                <h1 id="d-gitea">d-gitea</h1>
+                <h1 id="d-gitea">d-gitea<a class="headerlink" href="#d-gitea" title="Permanent link">&para;</a></h1>
 <p>Docker files for running gitea</p>
 <p><a href="https://docs.gitea.io/en-us/install-with-docker/">gitea with docker - documentation</a></p>
-<h2 id="table-of-contents">Table of Contents</h2>
+<h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
 <ul>
 <li>secrets</li>
 <li>container directory structure</li>
@@ -491,33 +527,34 @@
 <li>customizing gitea with custom files</li>
 <li>backing up and restoring gitea</li>
 </ul>
-<h2 id="secrets">Secrets</h2>
+<h2 id="secrets">Secrets<a class="headerlink" href="#secrets" title="Permanent link">&para;</a></h2>
 <p>There are two secrets to set in the <code>app.ini</code> before running gitea:
 the internal token and the secret key.</p>
 <p>These can be set in <code>*.secret</code> files:</p>
-<pre><code>internal_token.secret
+<div class="codehilite"><pre><span></span>internal_token.secret
 secret_key.secret
-</code></pre>
+</pre></div>
+
 
 <p>The contents should be the value of the variable 
 you wish to use in <code>custom/conf/app.ini</code>.</p>
 <p>These files are not tracked by git.</p>
-<h2 id="container-directory-structure">Container Directory Structure</h2>
+<h2 id="container-directory-structure">Container Directory Structure<a class="headerlink" href="#container-directory-structure" title="Permanent link">&para;</a></h2>
 <p>The <code>custom/</code> dir in this folder maps to the <code>/data/gitea</code> volume
 inside the gitea container.</p>
 <p>For example, the <code>app.ini</code> configuration file will be mapped into 
 the container at <code>/data/gitea/conf/app.ini</code>.</p>
-<h2 id="container-data-volume">Container Data Volume</h2>
+<h2 id="container-data-volume">Container Data Volume<a class="headerlink" href="#container-data-volume" title="Permanent link">&para;</a></h2>
 <p>This container expects to use a docker data volume 
 to store the gitea custom configuration 
 and the entire contents of all repositories.</p>
 <p>On the host machine, you can access named data volumes at 
 <code>/var/lib/docker/volumes/gitea_gitea/_data</code>
 or copy files in and out of the container using <code>docker cp</code>.</p>
-<h3 id="directory-structure-before-adding-repos-to-gitea">directory structure before adding repos to gitea</h3>
+<h3 id="directory-structure-before-adding-repos-to-gitea">directory structure before adding repos to gitea<a class="headerlink" href="#directory-structure-before-adding-repos-to-gitea" title="Permanent link">&para;</a></h3>
 <p>Directory structure for host-mounted gitea directory
 before any repositorieshave been added to gitea:</p>
-<pre><code>gitea
+<div class="codehilite"><pre><span></span>gitea
 ├── git
 │   └── repositories
 ├── gitea
@@ -538,11 +575,12 @@ before any repositorieshave been added to gitea:</p>
 └── ssh [error opening dir]
 
 11 directories, 7 files
-</code></pre>
+</pre></div>
 
-<h3 id="directory-structure-after-adding-repos-to-gitea">directory structure after adding repos to gitea</h3>
+
+<h3 id="directory-structure-after-adding-repos-to-gitea">directory structure after adding repos to gitea<a class="headerlink" href="#directory-structure-after-adding-repos-to-gitea" title="Permanent link">&para;</a></h3>
 <p>After adding a repository:</p>
-<pre><code>gitea
+<div class="codehilite"><pre><span></span>gitea
 ├── git
 │   └── repositories
 │       └─e charlesreid1
@@ -599,10 +637,11 @@ before any repositorieshave been added to gitea:</p>
 └── ssh [error opening dir]
 
 25 directories, 29 files
-</code></pre>
+</pre></div>
 
-<h2 id="files-mounted-into-container">Files Mounted Into Container</h2>
-<h3 id="customconf-configuration-file"><code>custom/conf</code> configuration file</h3>
+
+<h2 id="files-mounted-into-container">Files Mounted Into Container<a class="headerlink" href="#files-mounted-into-container" title="Permanent link">&para;</a></h2>
+<h3 id="customconf-configuration-file"><code>custom/conf</code> configuration file<a class="headerlink" href="#customconf-configuration-file" title="Permanent link">&para;</a></h3>
 <p>The conf dir contains configuration files to configure how gitea works.</p>
 <p>The <code>app.ini</code> file needs to contain two secrets,
 which are scrubbed in <code>app.ini.sample</code>.</p>
@@ -614,46 +653,48 @@ which are scrubbed in <code>app.ini.sample</code>.</p>
 <p>Use the <code>make_app_ini.sh</code> script to add the two secrets to the document.
 This will use sed to find/replace instances of the scrubbed secret,
 and will output the result to <code>custom/conf/app.ini</code>.</p>
-<pre><code>./make_app_ini.sh
-</code></pre>
+<div class="codehilite"><pre><span></span>./make_app_ini.sh
+</pre></div>
+
 
 <p>This generates <code>custom/conf/app.ini</code>.</p>
 <p>When the container is run, this file will be at <code>/data/gitea/conf/app.ini</code>.</p>
-<h2 id="customtemplates-template-files"><code>custom/templates</code> template files</h2>
+<h2 id="customtemplates-template-files"><code>custom/templates</code> template files<a class="headerlink" href="#customtemplates-template-files" title="Permanent link">&para;</a></h2>
 <p>The templates directory contains template files. These are gitea templates that 
 control how particular kinds of gitea pages look. For example, a template can
 be used to modify how the user page looks, or modify the layout of repository
 main pages.</p>
 <p>In the container, this will be at <code>/data/gitea/templates/</code>.</p>
-<h2 id="custompages-gitea-pages"><code>custom/pages</code> gitea pages</h2>
+<h2 id="custompages-gitea-pages"><code>custom/pages</code> gitea pages<a class="headerlink" href="#custompages-gitea-pages" title="Permanent link">&para;</a></h2>
 <p>The pages directory contains one-off pages or static content that is 
 hosted by gitea at the same domain (git.charlesreid1.com) but 
 not necessarily incorporated into the gitea site.</p>
 <p>For example, a custom "about me" page could be added as a static .html file,
 and it would be hosted at <code>git.charlesreid1.com/about</code>.</p>
 <p>In the container, this will be at <code>/data/gitea/pages/</code>.</p>
-<h2 id="using-the-docker-composeyml-file">Using the <code>docker-compose.yml</code> File</h2>
+<h2 id="using-the-docker-composeyml-file">Using the <code>docker-compose.yml</code> File<a class="headerlink" href="#using-the-docker-composeyml-file" title="Permanent link">&para;</a></h2>
 <p>This directory contains a docker-compose file that can be used to run 
 a gitea server on port 3000.</p>
 <p>To get the gitea container up and running, </p>
-<pre><code>$ docker-compose up
-</code></pre>
+<div class="codehilite"><pre><span></span>$ docker-compose up
+</pre></div>
+
 
 <p>Now visit <code>&lt;server-ip&gt;:3000</code>. You will be presented with a configuration page.
 Set up the gitea instance. This will automatically populate the directory 
 structure. See below for more info.</p>
 <p>Use this as a project seed to add gitea containers to other docker pods.</p>
-<h2 id="notes-on-custom-files">Notes on Custom Files</h2>
+<h2 id="notes-on-custom-files">Notes on Custom Files<a class="headerlink" href="#notes-on-custom-files" title="Permanent link">&para;</a></h2>
 <p>The settings in the app.ini file are documented <a href="https://docs.gitea.io/en-us/config-cheat-sheet/">here</a>.</p>
 <p>An extensive sample app.ini file is <a href="https://github.com/go-gitea/gitea/blob/master/custom/conf/app.ini.sample">here</a> (WARNING: this broke gitea).</p>
 <p>The existing gitea templates are in the gitea repo under <a href="https://github.com/go-gitea/gitea/tree/master/templates">templates/</a>.
 These can be modified as needed and placed in the <code>custom/templates/</code> directory.</p>
-<h2 id="backing-up-and-restoring-gitea">Backing Up and Restoring Gitea</h2>
+<h2 id="backing-up-and-restoring-gitea">Backing Up and Restoring Gitea<a class="headerlink" href="#backing-up-and-restoring-gitea" title="Permanent link">&para;</a></h2>
 <p>Fortunately, gitea provides dump functionality.</p>
 <p>Unfortunately, there is no restore functionality.</p>
 <p>See <a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-gitea">pod-charlesreid1/utils-gitea</a>
 for proper backup/restore scripts.</p>
-<h3 id="executive-summary">Executive Summary</h3>
+<h3 id="executive-summary">Executive Summary<a class="headerlink" href="#executive-summary" title="Permanent link">&para;</a></h3>
 <p>Backup:
 <em> create a backup target directory in the container
 </em> create a gitea dump zip file using <code>gitea dump</code> command
@@ -690,6 +731,10 @@ for proper backup/restore scripts.</p>
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
       <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2018 <a href="https://charlesreid1.com">Charles Reid</a>
+          </div>
         
         powered by
         <a href="http://www.mkdocs.org">MkDocs</a>
