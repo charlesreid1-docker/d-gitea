@@ -46,7 +46,7 @@ var tileStrokeColor     = "#ccc";
 var monthStrokeColor    = "#aaa";
 
 var color = d3.scaleQuantize()
-    .domain([0, 35])
+    .domain([0, 60])
     .range([ "#ffeda0", "#fed976", "#feb24c", "#fd8d3c", "#fc4e2a", "#e31a1c", "#bd0026", "#800026" ]);
 // red and yeller
 
@@ -121,7 +121,7 @@ svg.append("g")
 Load up the csv file
 */
 
-d3.csv("data/git/raw/master/commit_counts.csv", function(error, csv) {
+d3.csv("/data/charlesreid1-data/raw/branch/master/commit_counts.csv", function(error, csv) {
 
   if (error) throw error;
 
