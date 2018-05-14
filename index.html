@@ -695,22 +695,26 @@ These can be modified as needed and placed in the <code>custom/templates/</code>
 <p>See <a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-gitea">pod-charlesreid1/utils-gitea</a>
 for proper backup/restore scripts.</p>
 <h3 id="executive-summary">Executive Summary<a class="headerlink" href="#executive-summary" title="Permanent link">&para;</a></h3>
-<p>Backup:
-<em> create a backup target directory in the container
-</em> create a gitea dump zip file using <code>gitea dump</code> command
-<em> create a gitea avatars zip file
-</em> copy everything in the backup target directory out of the container
-* remove the backup target directory</p>
-<p>Restore:
-<em> create a restore target directory in the container
-</em> copy gitea dump and gitea avatars zip files into restore target dir
-<em> unpack dump zip, unpack avatars zip
-</em> unzip repositories zip (contained in dump zip)
-<em> restore <code>repositories/</code> folder to <code>/data/git/repositories/</code>
-</em> (skip restoring <code>custom/</code> files, version control takes care of that)
-<em> restore sqlite database using sql database dump
-</em> restore avatars
-* remove the restore target directory</p>
+<p>Backup:</p>
+<ul>
+<li>create a backup target directory in the container</li>
+<li>create a gitea dump zip file using <code>gitea dump</code> command</li>
+<li>create a gitea avatars zip file</li>
+<li>copy everything in the backup target directory out of the container</li>
+<li>remove the backup target directory</li>
+</ul>
+<p>Restore:</p>
+<ul>
+<li>create a restore target directory in the container</li>
+<li>copy gitea dump and gitea avatars zip files into restore target dir</li>
+<li>unpack dump zip, unpack avatars zip</li>
+<li>unzip repositories zip (contained in dump zip)</li>
+<li>restore <code>repositories/</code> folder to <code>/data/git/repositories/</code></li>
+<li>(skip restoring <code>custom/</code> files, version control takes care of that)</li>
+<li>restore sqlite database using sql database dump</li>
+<li>restore avatars</li>
+<li>remove the restore target directory</li>
+</ul>
                 
                   
                 
