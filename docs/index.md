@@ -2,7 +2,13 @@
 
 Docker files for running gitea
 
-[gitea with docker - documentation](https://docs.gitea.io/en-us/install-with-docker/)
+[documentation: d-gitea container](https://pages.charlesreid1.com/d-gitea/) (you are here)
+
+[source code on git.charlesreid1.com: d-gitea](https://git.charlesreid1.com/docker/d-gitea)
+
+[source code on github.com: charlesreid1-docker/d-gitea](https://github.com/charlesreid1-docker/d-gitea)
+
+[gitea documentation - running gitea with docker](https://docs.gitea.io/en-us/install-with-docker/)
 
 
 ## Table of Contents
@@ -22,7 +28,7 @@ the internal token and the secret key.
 
 These can be set in `*.secret` files:
 
-```
+```plain
 internal_token.secret
 secret_key.secret
 ```
@@ -55,7 +61,7 @@ or copy files in and out of the container using `docker cp`.
 Directory structure for host-mounted gitea directory
 before any repositorieshave been added to gitea:
 
-```
+```plain
 gitea
 ├── git
 │   └── repositories
@@ -83,7 +89,7 @@ gitea
 
 After adding a repository:
 
-```
+```plain
 gitea
 ├── git
 │   └── repositories
@@ -161,7 +167,7 @@ Use the `make_app_ini.sh` script to add the two secrets to the document.
 This will use sed to find/replace instances of the scrubbed secret,
 and will output the result to `custom/conf/app.ini`.
 
-```
+```plain
 ./make_app_ini.sh
 ```
 
@@ -196,7 +202,7 @@ a gitea server on port 3000.
 
 To get the gitea container up and running, 
 
-```
+```plain
 $ docker-compose up
 ```
 
