@@ -227,6 +227,7 @@ for proper backup/restore scripts.
 ### Executive Summary
 
 Backup:
+
 * create a backup target directory in the container
 * create a gitea dump zip file using `gitea dump` command
 * create a gitea avatars zip file
@@ -234,6 +235,7 @@ Backup:
 * remove the backup target directory
 
 Restore:
+
 * create a restore target directory in the container
 * copy gitea dump and gitea avatars zip files into restore target dir
 * unpack dump zip, unpack avatars zip
