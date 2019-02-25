@@ -1,0 +1,98 @@
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; My Amazing Gitea Config File
+;; 
+;; charles reid
+;; march 2017
+;; https://github.com/go-gitea/gitea/blob/master/conf/app.ini
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+APP_NAME = {{ gitea_app_name }}
+RUN_USER = git
+RUN_MODE = prod
+
+[database]
+DB_TYPE  = sqlite3
+HOST     = 
+NAME     = 
+USER     = 
+PASSWD   = 
+SSL_MODE = disable
+PATH     = /data/gitea/gitea.db
+
+[repository]
+ROOT               = /data/git/repositories
+PREFERRED_LICENSES = MIT License
+
+; This gets rid of the HTTP option to check out repos...
+;DISABLE_HTTP_GIT = true
+[server]
+PROTOCOL     = http
+DOMAIN       = {{ gitea_domain }}
+#CERT_FILE    = /www/gitea/certs/cert.pem
+#KEY_FILE     = /www/gitea/certs/key.pem
+SSH_DOMAIN   = git.charlesreid1.blue
+HTTP_PORT    = 3000
+HTTP_ADDR    = 0.0.0.0
+;ROOT_URL     = http://git.charlesreid1.blue
+ROOT_URL     = %(PROTOCOL)s://%(DOMAIN)s:%(HTTP_PORT)s/
+DISABLE_SSH  = false
+SSH_PORT     = 22
+OFFLINE_MODE = false
+
+; Upper level of template and static file path
+; default is the path where Gitea is executed
+;;;;STATIC_ROOT_PATH = /www/gitea/static
+[mailer]
+ENABLED = false
+
+[service]
+REGISTER_EMAIL_CONFIRM = false
+ENABLE_NOTIFY_MAIL     = false
+DISABLE_REGISTRATION   = true
+ENABLE_CAPTCHA         = false
+REQUIRE_SIGNIN_VIEW    = false
+
+[picture]
+DISABLE_GRAVATAR        = true
+ENABLE_FEDERATED_AVATAR = false
+AVATAR_UPLOAD_PATH      = /data/gitea/avatars
+
+[session]
+PROVIDER = file
+
+[log]
+MODE      = file
+; Either "Trace", "Debug", "Info", "Warn", "Error", "Critical", default is "Trace"
+LEVEL     = Info
+ROOT_PATH = /data/gitea/log
+
+; For "file" mode only
+[log.file]
+LEVEL          = 
+; This enables automated log rotate(switch of following options), default is true
+LOG_ROTATE     = true
+; Max line number of single file, default is 1000000
+MAX_LINES      = 1000000
+; Max size shift of single file, default is 28 means 1 << 28, 256MB
+MAX_SIZE_SHIFT = 28
+; Segment log daily, default is true
+DAILY_ROTATE   = true
+; Expired days of log file(delete after max days), default is 7
+MAX_DAYS       = 7
+
+[cron.archive_cleanup]
+ENABLED      = false
+
+[security]
+INSTALL_LOCK        = true
+SECRET_KEY          = {{ gitea_secret_key }}
+MIN_PASSWORD_LENGTH = 6
+INTERNAL_TOKEN      = {{ gitea_internal_token }}
+
+[other]
+SHOW_FOOTER_BRANDING           = false
+; Show version information about Gitea and Go in the footer
+SHOW_FOOTER_VERSION            = false
+; Show time of template execution in the footer
+SHOW_FOOTER_TEMPLATE_LOAD_TIME = false
+
+
