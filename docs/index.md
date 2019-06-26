@@ -59,7 +59,7 @@ or copy files in and out of the container using `docker cp`.
 ### directory structure before adding repos to gitea
 
 Directory structure for host-mounted gitea directory
-before any repositorieshave been added to gitea:
+before any repositories have been added to gitea:
 
 ```plain
 gitea
