@@ -23,19 +23,23 @@ ROOT               = /data/git/repositories
 PREFERRED_LICENSES = MIT License
 
 ; This gets rid of the HTTP option to check out repos...
-;DISABLE_HTTP_GIT = true
+DISABLE_HTTP_GIT = true
+
 [server]
 PROTOCOL     = http
 DOMAIN       = {{ gitea_domain }}
 #CERT_FILE    = /www/gitea/certs/cert.pem
 #KEY_FILE     = /www/gitea/certs/key.pem
-SSH_DOMAIN   = git.charlesreid1.blue
+SSH_DOMAIN   = {{ gitea_domain }}
 HTTP_PORT    = 3000
 HTTP_ADDR    = 0.0.0.0
-;ROOT_URL     = http://git.charlesreid1.blue
+;ROOT_URL     = https://{{ gitea_domain }}
 ROOT_URL     = %(PROTOCOL)s://%(DOMAIN)s:%(HTTP_PORT)s/
 DISABLE_SSH  = false
-SSH_PORT     = 22
+; port to display in clone url:
+SSH_PORT     = 222
+; port for built-in ssh server to listen on:
+SSH_LISTEN_PORT = 22
 OFFLINE_MODE = false
 
 ; Upper level of template and static file path
