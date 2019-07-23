@@ -1,4 +1,3 @@
 site
 *.secret
-app.ini
-app.ini.backup
+custom/conf/app.ini
