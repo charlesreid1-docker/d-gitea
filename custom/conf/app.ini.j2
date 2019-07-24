@@ -5,6 +5,7 @@
 ;; march 2017
 ;; https://github.com/go-gitea/gitea/blob/master/conf/app.ini
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 APP_NAME = {{ gitea_app_name }}
 RUN_USER = git
 RUN_MODE = prod
@@ -27,13 +28,13 @@ DISABLE_HTTP_GIT = true
 
 [server]
 PROTOCOL     = http
-DOMAIN       = {{ gitea_domain }}
+DOMAIN       = git.{{ server_name_default }}
 #CERT_FILE    = /www/gitea/certs/cert.pem
 #KEY_FILE     = /www/gitea/certs/key.pem
-SSH_DOMAIN   = {{ gitea_domain }}
+SSH_DOMAIN   = git.{{ server_name_default }}
 HTTP_PORT    = 3000
 HTTP_ADDR    = 0.0.0.0
-;ROOT_URL     = https://{{ gitea_domain }}
+;ROOT_URL     = https://git.{{ server_name_default }}
 ROOT_URL     = %(PROTOCOL)s://%(DOMAIN)s:%(HTTP_PORT)s/
 DISABLE_SSH  = false
 ; port to display in clone url:
