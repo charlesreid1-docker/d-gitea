@@ -14,9 +14,11 @@ Docker files for running gitea
 ## Table of Contents
 
 * secrets
+* app.ini file
 * jinja templates
 * container directory structure
 * container data volume
+* git repositories
 * files mounted into container
 * using the `docker-compose.yml` file
 * notes on custom files
@@ -26,17 +28,17 @@ Docker files for running gitea
 
 ## Secrets
 
-There are two secrets to set in the `app.ini` before running gitea:
+There are two secrets that must be set in the Gitea configuration file:
 the internal token and the secret key.
 
-These can be set in `*.secret` files:
+The two secret values can be placed in two `*.secret` files:
 
 ```plain
 internal_token.secret
 secret_key.secret
 ```
 
-The contents should be the value of the variable 
+The contents should be the value of the secret variable 
 you wish to use in `custom/conf/app.ini`.
 
 These files are not tracked by git.
@@ -76,6 +78,8 @@ and the entire contents of all repositories.
 On the host machine, you can access named data volumes at 
 `/var/lib/docker/volumes/gitea_gitea/_data`
 or copy files in and out of the container using `docker cp`.
+
+## Git Repositories
 
 ### directory structure before adding repos to gitea
 
@@ -169,6 +173,23 @@ gitea
 
 25 directories, 29 files
 ```
+
+### Backing up git repositories
+
+Backing up git repositories associated with the gitea instance
+is a separate step from gitea dump (see above).
+
+Before backing up repositories, perform a gitea dump without the
+repositories included.
+
+All git repositories are stored in `/data/git/repositories/`. They are stored
+in the subdirectory `org-name/repo-name`.
+
+To back up all repositories, copy the folder `/data/git/repositories` from the
+gitea container.
+
+To restore all repositories, copy the folder `/data/git/repositories` into the
+gitea container.
 
 ## Files Mounted Into Container
 
