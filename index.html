@@ -33,8 +33,8 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="./">
-      <meta name="generator" content="mkdocs-0.17.3, mkdocs-material-2.7.2">
+      <link rel="shortcut icon" href=".">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-3.0.3">
     
     
       
@@ -42,13 +42,18 @@
       
     
     
-      <link rel="stylesheet" href="./assets/stylesheets/application.8d40d89b.css">
+      <link rel="stylesheet" href="assets/stylesheets/application.451f80e5.css">
       
-        <link rel="stylesheet" href="./assets/stylesheets/application-palette.6079476c.css">
+        <link rel="stylesheet" href="assets/stylesheets/application-palette.22915126.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#7cb342">
       
     
     
-      <script src="./assets/javascripts/modernizr.1aa3b519.js"></script>
+      <script src="assets/javascripts/modernizr.1aa3b519.js"></script>
     
     
       <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -56,10 +61,10 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
         <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
       
-      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     
+    <link rel="stylesheet" href="assets/fonts/material-icons.css">
     
-      <link rel="stylesheet" href="./css/custom.css">
+      <link rel="stylesheet" href="css/custom.css">
     
     
   </head>
@@ -74,9 +79,9 @@
         
       </defs>
     </svg>
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="search" autocomplete="off">
-    <label class="md-overlay" data-md-component="overlay" for="drawer"></label>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
       <a href="#d-gitea" tabindex="1" class="md-skip">
         Skip to content
@@ -94,7 +99,7 @@
         </a>
       </div>
       <div class="md-flex__cell md-flex__cell--shrink">
-        <label class="md-icon md-icon--menu md-header-nav__button" for="drawer"></label>
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
       </div>
       <div class="md-flex__cell md-flex__cell--stretch">
         <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
@@ -113,14 +118,14 @@
       <div class="md-flex__cell md-flex__cell--shrink">
         
           
-            <label class="md-icon md-icon--search md-header-nav__button" for="search"></label>
+            <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
             
 <div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="search"></label>
+  <label class="md-search__overlay" for="__search"></label>
   <div class="md-search__inner" role="search">
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
-      <label class="md-icon md-search__icon" for="search"></label>
+      <label class="md-icon md-search__icon" for="__search"></label>
       <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
         &#xE5CD;
       </button>
@@ -175,12 +180,12 @@
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
-  <label class="md-nav__title md-nav__title--site" for="drawer">
-    <span class="md-nav__button md-logo">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://pages.charlesreid1.com/d-gitea" title="d-gitea" class="md-nav__button md-logo">
       
         <i class="md-icon">input</i>
       
-    </span>
+    </a>
     d-gitea
   </label>
   
@@ -211,12 +216,12 @@
 
   <li class="md-nav__item md-nav__item--active">
     
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="toc">
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
       
     
     
-      <label class="md-nav__link md-nav__link--active" for="toc">
+      <label class="md-nav__link md-nav__link--active" for="__toc">
         Home
       </label>
     
@@ -231,7 +236,7 @@
     
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -249,6 +254,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#jinja-templates" title="Jinja Templates" class="md-nav__link">
+    Jinja Templates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#container-directory-structure" title="Container Directory Structure" class="md-nav__link">
     Container Directory Structure
   </a>
@@ -258,6 +270,13 @@
         <li class="md-nav__item">
   <a href="#container-data-volume" title="Container Data Volume" class="md-nav__link">
     Container Data Volume
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-repositories" title="Git Repositories" class="md-nav__link">
+    Git Repositories
   </a>
   
     <nav class="md-nav">
@@ -277,6 +296,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#backing-up-git-repositories" title="Backing up git repositories" class="md-nav__link">
+    Backing up git repositories
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -287,12 +313,26 @@
     Files Mounted Into Container
   </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-docker-composeyml-file" title="Using the docker-compose.yml File" class="md-nav__link">
+    Using the docker-compose.yml File
+  </a>
+  
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#customconf-configuration-file" title="custom/conf configuration file" class="md-nav__link">
-    custom/conf configuration file
+  <a href="#standalone" title="Standalone" class="md-nav__link">
+    Standalone
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod-charlesreid1" title="pod-charlesreid1" class="md-nav__link">
+    pod-charlesreid1
   </a>
   
 </li>
@@ -303,44 +343,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#customtemplates-template-files" title="custom/templates template files" class="md-nav__link">
-    custom/templates template files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#custompages-gitea-pages" title="custom/pages gitea pages" class="md-nav__link">
-    custom/pages gitea pages
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-the-docker-composeyml-file" title="Using the docker-compose.yml File" class="md-nav__link">
-    Using the docker-compose.yml File
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#notes-on-custom-files" title="Notes on Custom Files" class="md-nav__link">
     Notes on Custom Files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#backing-up-and-restoring-gitea" title="Backing Up and Restoring Gitea" class="md-nav__link">
-    Backing Up and Restoring Gitea
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#executive-summary" title="Executive Summary" class="md-nav__link">
-    Executive Summary
+  <a href="#custom-templates-directory" title="custom templates directory" class="md-nav__link">
+    custom templates directory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-gitea-pages" title="custom gitea pages" class="md-nav__link">
+    custom gitea pages
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backing-up-and-restoring-gitea" title="Backing up and restoring gitea" class="md-nav__link">
+    Backing up and restoring gitea
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-backup" title="Creating a Backup" class="md-nav__link">
+    Creating a Backup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contents-of-dump-file" title="Contents of Dump File" class="md-nav__link">
+    Contents of Dump File
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restoring-a-backup" title="Restoring a Backup" class="md-nav__link">
+    Restoring a Backup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restoring-repositories-directory" title="Restoring repositories directory" class="md-nav__link">
+    Restoring repositories directory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-backups" title="Database backups" class="md-nav__link">
+    Database backups
   </a>
   
 </li>
@@ -378,7 +445,7 @@
     
   
   
-    <label class="md-nav__title" for="toc">Table of contents</label>
+    <label class="md-nav__title" for="__toc">Table of contents</label>
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
@@ -396,6 +463,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#jinja-templates" title="Jinja Templates" class="md-nav__link">
+    Jinja Templates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#container-directory-structure" title="Container Directory Structure" class="md-nav__link">
     Container Directory Structure
   </a>
@@ -405,6 +479,13 @@
         <li class="md-nav__item">
   <a href="#container-data-volume" title="Container Data Volume" class="md-nav__link">
     Container Data Volume
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-repositories" title="Git Repositories" class="md-nav__link">
+    Git Repositories
   </a>
   
     <nav class="md-nav">
@@ -424,6 +505,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#backing-up-git-repositories" title="Backing up git repositories" class="md-nav__link">
+    Backing up git repositories
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -434,12 +522,26 @@
     Files Mounted Into Container
   </a>
   
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-the-docker-composeyml-file" title="Using the docker-compose.yml File" class="md-nav__link">
+    Using the docker-compose.yml File
+  </a>
+  
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#customconf-configuration-file" title="custom/conf configuration file" class="md-nav__link">
-    custom/conf configuration file
+  <a href="#standalone" title="Standalone" class="md-nav__link">
+    Standalone
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod-charlesreid1" title="pod-charlesreid1" class="md-nav__link">
+    pod-charlesreid1
   </a>
   
 </li>
@@ -450,44 +552,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#customtemplates-template-files" title="custom/templates template files" class="md-nav__link">
-    custom/templates template files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#custompages-gitea-pages" title="custom/pages gitea pages" class="md-nav__link">
-    custom/pages gitea pages
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-the-docker-composeyml-file" title="Using the docker-compose.yml File" class="md-nav__link">
-    Using the docker-compose.yml File
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#notes-on-custom-files" title="Notes on Custom Files" class="md-nav__link">
     Notes on Custom Files
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#backing-up-and-restoring-gitea" title="Backing Up and Restoring Gitea" class="md-nav__link">
-    Backing Up and Restoring Gitea
   </a>
   
     <nav class="md-nav">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#executive-summary" title="Executive Summary" class="md-nav__link">
-    Executive Summary
+  <a href="#custom-templates-directory" title="custom templates directory" class="md-nav__link">
+    custom templates directory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-gitea-pages" title="custom gitea pages" class="md-nav__link">
+    custom gitea pages
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backing-up-and-restoring-gitea" title="Backing up and restoring gitea" class="md-nav__link">
+    Backing up and restoring gitea
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-backup" title="Creating a Backup" class="md-nav__link">
+    Creating a Backup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#contents-of-dump-file" title="Contents of Dump File" class="md-nav__link">
+    Contents of Dump File
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restoring-a-backup" title="Restoring a Backup" class="md-nav__link">
+    Restoring a Backup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#restoring-repositories-directory" title="Restoring repositories directory" class="md-nav__link">
+    Restoring repositories directory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#database-backups" title="Database backups" class="md-nav__link">
+    Database backups
   </a>
   
 </li>
@@ -523,25 +652,43 @@
 <h2 id="table-of-contents">Table of Contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h2>
 <ul>
 <li>secrets</li>
+<li>app.ini file</li>
+<li>jinja templates</li>
 <li>container directory structure</li>
+<li>container data volume</li>
+<li>git repositories</li>
 <li>files mounted into container</li>
 <li>using the <code>docker-compose.yml</code> file</li>
+<li>notes on custom files</li>
 <li>configuring gitea with <code>app.ini</code></li>
 <li>customizing gitea with custom files</li>
 <li>backing up and restoring gitea</li>
 </ul>
 <h2 id="secrets">Secrets<a class="headerlink" href="#secrets" title="Permanent link">&para;</a></h2>
-<p>There are two secrets to set in the <code>app.ini</code> before running gitea:
+<p>There are two secrets that must be set in the Gitea configuration file:
 the internal token and the secret key.</p>
-<p>These can be set in <code>*.secret</code> files:</p>
+<p>The two secret values can be placed in two <code>*.secret</code> files:</p>
 <div class="codehilite"><pre><span></span>internal_token.secret
 secret_key.secret
 </pre></div>
 
 
-<p>The contents should be the value of the variable 
+<p>The contents should be the value of the secret variable 
 you wish to use in <code>custom/conf/app.ini</code>.</p>
 <p>These files are not tracked by git.</p>
+<h2 id="jinja-templates">Jinja Templates<a class="headerlink" href="#jinja-templates" title="Permanent link">&para;</a></h2>
+<p>The <code>app.ini</code> script is not stored directly in this repo, since it contains
+sensitive information. Instead, we store a Jinja template, <code>app.ini.j2</code>, which
+is rendered into a real <code>app.ini</code> file after variable substitutions, etc.</p>
+<p>Normally, we use this repo with Ansible, so we don't deal with the Jinja template
+ourselves.</p>
+<p>If you want to render the Jinja template into a real config file without using
+Ansible, use the <code>make_app_ini.sh</code> script:</p>
+<div class="codehilite"><pre><span></span>$ ./make_app_ini.sh
+</pre></div>
+
+
+<p>(This requires the two secret files mentioned above to be present.)</p>
 <h2 id="container-directory-structure">Container Directory Structure<a class="headerlink" href="#container-directory-structure" title="Permanent link">&para;</a></h2>
 <p>The <code>custom/</code> dir in this folder maps to the <code>/data/gitea</code> volume
 inside the gitea container.</p>
@@ -554,9 +701,10 @@ and the entire contents of all repositories.</p>
 <p>On the host machine, you can access named data volumes at 
 <code>/var/lib/docker/volumes/gitea_gitea/_data</code>
 or copy files in and out of the container using <code>docker cp</code>.</p>
+<h2 id="git-repositories">Git Repositories<a class="headerlink" href="#git-repositories" title="Permanent link">&para;</a></h2>
 <h3 id="directory-structure-before-adding-repos-to-gitea">directory structure before adding repos to gitea<a class="headerlink" href="#directory-structure-before-adding-repos-to-gitea" title="Permanent link">&para;</a></h3>
 <p>Directory structure for host-mounted gitea directory
-before any repositorieshave been added to gitea:</p>
+before any repositories have been added to gitea:</p>
 <div class="codehilite"><pre><span></span>gitea
 ├── git
 │   └── repositories
@@ -643,39 +791,24 @@ before any repositorieshave been added to gitea:</p>
 </pre></div>
 
 
+<h3 id="backing-up-git-repositories">Backing up git repositories<a class="headerlink" href="#backing-up-git-repositories" title="Permanent link">&para;</a></h3>
+<p>Backing up git repositories associated with the gitea instance
+is a separate step from gitea dump (see above).</p>
+<p>Before backing up repositories, perform a gitea dump without the
+repositories included.</p>
+<p>All git repositories are stored in <code>/data/git/repositories/</code>. They are stored
+in the subdirectory <code>org-name/repo-name</code>.</p>
+<p>To back up all repositories, copy the folder <code>/data/git/repositories</code> from the
+gitea container.</p>
+<p>To restore all repositories, copy the folder <code>/data/git/repositories</code> into the
+gitea container.</p>
 <h2 id="files-mounted-into-container">Files Mounted Into Container<a class="headerlink" href="#files-mounted-into-container" title="Permanent link">&para;</a></h2>
-<h3 id="customconf-configuration-file"><code>custom/conf</code> configuration file<a class="headerlink" href="#customconf-configuration-file" title="Permanent link">&para;</a></h3>
-<p>The conf dir contains configuration files to configure how gitea works.</p>
-<p>The <code>app.ini</code> file needs to contain two secrets,
-which are scrubbed in <code>app.ini.sample</code>.</p>
-<p>The two secrets that are needed are:</p>
-<ul>
-<li>an "internal token" secret, contained in <code>internal_token.secret</code></li>
-<li>a "secret key" secret, contained in <code>secret_key.secret</code></li>
-</ul>
-<p>Use the <code>make_app_ini.sh</code> script to add the two secrets to the document.
-This will use sed to find/replace instances of the scrubbed secret,
-and will output the result to <code>custom/conf/app.ini</code>.</p>
-<div class="codehilite"><pre><span></span>./make_app_ini.sh
-</pre></div>
-
-
-<p>This generates <code>custom/conf/app.ini</code>.</p>
-<p>When the container is run, this file will be at <code>/data/gitea/conf/app.ini</code>.</p>
-<h2 id="customtemplates-template-files"><code>custom/templates</code> template files<a class="headerlink" href="#customtemplates-template-files" title="Permanent link">&para;</a></h2>
-<p>The templates directory contains template files. These are gitea templates that 
-control how particular kinds of gitea pages look. For example, a template can
-be used to modify how the user page looks, or modify the layout of repository
-main pages.</p>
-<p>In the container, this will be at <code>/data/gitea/templates/</code>.</p>
-<h2 id="custompages-gitea-pages"><code>custom/pages</code> gitea pages<a class="headerlink" href="#custompages-gitea-pages" title="Permanent link">&para;</a></h2>
-<p>The pages directory contains one-off pages or static content that is 
-hosted by gitea at the same domain (git.charlesreid1.com) but 
-not necessarily incorporated into the gitea site.</p>
-<p>For example, a custom "about me" page could be added as a static .html file,
-and it would be hosted at <code>git.charlesreid1.com/about</code>.</p>
-<p>In the container, this will be at <code>/data/gitea/pages/</code>.</p>
+<p>The <code>d-gitea/custom/</code> directory is mounted into the container at <code>/data/gitea</code>.</p>
+<p>The <code>d-gitea/data/</code> directory is mounted into the container at <code>/app/gitea/data</code>.</p>
+<p>To make the custom configuration file, follow the instructions mentioned in
+the "Secrets" section.</p>
 <h2 id="using-the-docker-composeyml-file">Using the <code>docker-compose.yml</code> File<a class="headerlink" href="#using-the-docker-composeyml-file" title="Permanent link">&para;</a></h2>
+<h3 id="standalone">Standalone<a class="headerlink" href="#standalone" title="Permanent link">&para;</a></h3>
 <p>This directory contains a docker-compose file that can be used to run 
 a gitea server on port 3000.</p>
 <p>To get the gitea container up and running, </p>
@@ -687,37 +820,139 @@ a gitea server on port 3000.</p>
 Set up the gitea instance. This will automatically populate the directory 
 structure. See below for more info.</p>
 <p>Use this as a project seed to add gitea containers to other docker pods.</p>
+<h3 id="pod-charlesreid1">pod-charlesreid1<a class="headerlink" href="#pod-charlesreid1" title="Permanent link">&para;</a></h3>
+<p>The main use of this repo is as a submodule in
+<a href="https://github.com/charlesreid1-docker/pod-charlesreid1.git">pod-charlesreid1</a>.</p>
+<p>This pod is set up by Ansible, which integrates well with the Jinja template approach.</p>
 <h2 id="notes-on-custom-files">Notes on Custom Files<a class="headerlink" href="#notes-on-custom-files" title="Permanent link">&para;</a></h2>
-<p>The settings in the app.ini file are documented <a href="https://docs.gitea.io/en-us/config-cheat-sheet/">here</a>.</p>
-<p>An extensive sample app.ini file is <a href="https://github.com/go-gitea/gitea/blob/master/custom/conf/app.ini.sample">here</a> (WARNING: this broke gitea).</p>
+<p>The settings in the <code>app.ini</code> file are documented <a href="https://docs.gitea.io/en-us/config-cheat-sheet/">here</a>.</p>
+<p>An extensive sample <code>app.ini</code> file is <a href="https://github.com/go-gitea/gitea/blob/master/custom/conf/app.ini.sample">here</a> (WARNING: this broke gitea).</p>
 <p>The existing gitea templates are in the gitea repo under <a href="https://github.com/go-gitea/gitea/tree/master/templates">templates/</a>.
 These can be modified as needed and placed in the <code>custom/templates/</code> directory.</p>
-<h2 id="backing-up-and-restoring-gitea">Backing Up and Restoring Gitea<a class="headerlink" href="#backing-up-and-restoring-gitea" title="Permanent link">&para;</a></h2>
-<p>Fortunately, gitea provides dump functionality.</p>
-<p>Unfortunately, there is no restore functionality.</p>
-<p>See <a href="https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-gitea">pod-charlesreid1/utils-gitea</a>
-for proper backup/restore scripts.</p>
-<h3 id="executive-summary">Executive Summary<a class="headerlink" href="#executive-summary" title="Permanent link">&para;</a></h3>
-<p>Backup:</p>
+<h3 id="custom-templates-directory">custom templates directory<a class="headerlink" href="#custom-templates-directory" title="Permanent link">&para;</a></h3>
+<p>The templates directory <code>d-gitea/custom/templates</code> contains template files. 
+These are gitea templates that control how particular kinds of gitea pages look.
+For example, a template can be used to modify how the user page looks, or modify
+the layout of repository main pages.</p>
+<p>In the container, this will be at <code>/data/gitea/templates/</code>.</p>
+<h3 id="custom-gitea-pages">custom gitea pages<a class="headerlink" href="#custom-gitea-pages" title="Permanent link">&para;</a></h3>
+<p>The custom pages directory <code>d-gitea/custom/pages</code> contains one-off pages or static
+content that is hosted by the gitea instance, but not necessarily incorporated into
+the gitea site.</p>
+<p>For example, a custom "about me" page could be added as a static .html file,
+and it would be hosted at <code>git.charlesreid1.com/about</code>.</p>
+<p>In the container, this will be at <code>/data/gitea/pages/</code>.</p>
+<h2 id="backing-up-and-restoring-gitea">Backing up and restoring gitea<a class="headerlink" href="#backing-up-and-restoring-gitea" title="Permanent link">&para;</a></h2>
+<p>Running <code>gitea dump</code> command will dump files required for restoring an existing
+Gitea instance. Unfortunately, gitea's backup and restore functionality is an
+absolute dumpster fire.</p>
+<p>We do our best to walk through the process, but here is a summary:
+* On the old system:
+    * Create a backup file <code>gitea-dump.zip</code> using the very specific <code>gitea dump</code> incantation that works
+    * Move the backup file out of the gitea container
+* On the new system:
+    * Unzip the backup file <code>gitea-dump.zip</code>
+    * Put appropriate files in appropriate location
+    * Use the table below to determine where in the repo the gitea dump files should go,
+      and where they will be available inside the gitea container</p>
+<h3 id="creating-a-backup">Creating a Backup<a class="headerlink" href="#creating-a-backup" title="Permanent link">&para;</a></h3>
+<p>To create a gitea dump, connect to the docker container and get a bash shell as the user
+<code>git</code> via the docker exec command:</p>
+<div class="codehilite"><pre><span></span># connect to gitea container
+docker exec -it --user git name_of_gitea_container /bin/bash
+</pre></div>
+
+
+<p>This will give you a bash shell as the user <code>git</code>. Now create a gitea dump file
+(the gitea dump command requires you to be in <code>/app/gitea</code>, this assumes that the
+gitea executable is at the default location of <code>/app/gitea/gitea</code>):</p>
+<div class="codehilite"><pre><span></span># necessary
+cd /app/gitea
+# create gitea dump
+/app/gitea/gitea dump --file gitea-dump.zip --skip-repository
+</pre></div>
+
+
+<p><strong>IMPORTANT: The <code>--skip-repositories</code> flag means we are making the gitea dump
+way, way, way smaller, but it also means we need to back up and restore the
+repositories folder ourselves! (See below for instructions.)</strong></p>
+<p>Now copy the file out of the container, then remove it from the container:</p>
+<div class="codehilite"><pre><span></span># copy gitea dump out of container
+docker cp name_of_gitea_container:/app/gitea/gitea-dump.zip .
+
+# remove gitea dump
+docker exec -it name_of_gitea_container rm /app/gitea/gitea-dump.zip
+</pre></div>
+
+
+<h3 id="contents-of-dump-file">Contents of Dump File<a class="headerlink" href="#contents-of-dump-file" title="Permanent link">&para;</a></h3>
+<p>When the gitea dump file is unzipped, it will create the following files:</p>
 <ul>
-<li>create a backup target directory in the container</li>
-<li>create a gitea dump zip file using <code>gitea dump</code> command</li>
-<li>create a gitea avatars zip file</li>
-<li>copy everything in the backup target directory out of the container</li>
-<li>remove the backup target directory</li>
+<li><code>app.ini</code></li>
+<li><code>custom/</code> directory</li>
+<li><code>log/</code> directory (useless duplicate, already contained in <code>custom/</code> dir)</li>
+<li><code>data/</code> directory</li>
 </ul>
-<p>Restore:</p>
+<p>These files should map to the following locations in the docker container
+running the live gitea instance:</p>
+<div class="codehilite"><pre><span></span>gitea dump file:        gitea live instance:
+----------------        --------------------
+app.ini                 /data/gitea/conf/app.ini
+custom/                 /data/gitea/
+log/                    (useless duplicate of custom/log/)
+data                    /app/gitea/data
+</pre></div>
+
+
+<h3 id="restoring-a-backup">Restoring a Backup<a class="headerlink" href="#restoring-a-backup" title="Permanent link">&para;</a></h3>
+<p>To restore a backup, copy the following files from the gitea dump
+to the following locations inside this repository:</p>
+<div class="codehilite"><pre><span></span>gitea dump file:        d-gitea repo location:
+----------------        ----------------------
+app.ini                 d-gitea/custom/conf/app.ini
+custom/*                d-gitea/custom/*
+data                    d-gitea/data
+</pre></div>
+
+
+<p>(If you're running pod-charlesreid1, put these files in the
+specified location in the <code>d-gitea</code> submodule.)</p>
+<h3 id="restoring-repositories-directory">Restoring repositories directory<a class="headerlink" href="#restoring-repositories-directory" title="Permanent link">&para;</a></h3>
+<p>Note that when we created the gitea dump, we excluded the repositories themselves.
+This is because these will greatly inflate the size of our gitea dump and will make
+it much more difficult to store our backup files.</p>
+<p>Repository contents can be backed up separately as follows:</p>
 <ul>
-<li>create a restore target directory in the container</li>
-<li>copy gitea dump and gitea avatars zip files into restore target dir</li>
-<li>unpack dump zip, unpack avatars zip</li>
-<li>unzip repositories zip (contained in dump zip)</li>
-<li>restore <code>repositories/</code> folder to <code>/data/git/repositories/</code></li>
-<li>(skip restoring <code>custom/</code> files, version control takes care of that)</li>
-<li>restore sqlite database using sql database dump</li>
-<li>restore avatars</li>
-<li>remove the restore target directory</li>
+<li>Log in to the old server</li>
+<li>Back up the <code>/data/git/repositories</code> directory (copy and compress)</li>
+<li>Copy the backup to the new server</li>
+<li>Log in to the new server</li>
+<li>Mount the <code>/data/git/repositories</code> folder</li>
 </ul>
+<p>Optionally, if you want to keep the repositories folder in its own location,
+modify <code>docker-compose.yml</code> to add the following line to the <code>gitea</code> container's
+<code>volumes</code> configuration:</p>
+<div class="codehilite"><pre><span></span>services:
+  server:
+    image: gitea/gitea:latest
+
+    ...
+
+    volumes:
+      - &quot;/path/to/repositories:/data/git/repositories&quot;
+
+    ...
+</pre></div>
+
+
+<p>This should make it easier to manage, back up, and restore the repositories folder.</p>
+<h3 id="database-backups">Database backups<a class="headerlink" href="#database-backups" title="Permanent link">&para;</a></h3>
+<p>We opt for the SQLite backend for gitea, which means the database
+is kept in a flat file on disk called <code>/data/gitea/gitea.db</code>.</p>
+<p>The location of this file and the format of the database are specified
+in the config file in <code>d-gitea/custom/conf/app.ini</code>.</p>
+<p>This file should not be edited, instead change the Jinja template
+<code>d-gitea/custom/conf/app.ini.j2</code> and remake <code>app.ini</code> from the template.</p>
                 
                   
                 
@@ -744,7 +979,7 @@ for proper backup/restore scripts.</p>
           </div>
         
         powered by
-        <a href="http://www.mkdocs.org">MkDocs</a>
+        <a href="https://www.mkdocs.org">MkDocs</a>
         and
         <a href="https://squidfunk.github.io/mkdocs-material/">
           Material for MkDocs</a>
@@ -758,13 +993,11 @@ for proper backup/restore scripts.</p>
       
     </div>
     
-      <script src="./assets/javascripts/application.0cf9b500.js"></script>
+      <script src="assets/javascripts/application.e72fd936.js"></script>
       
-      <script>app.initialize({version:"0.17.3",url:{base:"."}})</script>
+      <script>app.initialize({version:"1.1",url:{base:"."}})</script>
       
-        <script src="./search/require.js"></script>
-      
-        <script src="./search/search.js"></script>
+        <script src="search/main.js"></script>
       
     
     
