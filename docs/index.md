@@ -14,9 +14,12 @@ Docker files for running gitea
 ## Table of Contents
 
 * secrets
+* jinja templates
 * container directory structure
+* container data volume
 * files mounted into container
 * using the `docker-compose.yml` file
+* notes on custom files
 * configuring gitea with `app.ini`
 * customizing gitea with custom files
 * backing up and restoring gitea
@@ -37,6 +40,24 @@ The contents should be the value of the variable
 you wish to use in `custom/conf/app.ini`.
 
 These files are not tracked by git.
+
+## Jinja Templates
+
+The `app.ini` script is not stored directly in this repo, since it contains
+sensitive information. Instead, we store a Jinja template, `app.ini.j2`, which
+is rendered into a real `app.ini` file after variable substitutions, etc.
+
+Normally, we use this repo with Ansible, so we don't deal with the Jinja template
+ourselves.
+
+If you want to render the Jinja template into a real config file without using
+Ansible, use the `make_app_ini.sh` script:
+
+```
+$ ./make_app_ini.sh
+```
+
+(This requires the two secret files mentioned above to be present.)
 
 ## Container Directory Structure
 
@@ -151,51 +172,18 @@ gitea
 
 ## Files Mounted Into Container
 
-### `custom/conf` configuration file
+The `d-gitea/custom/` directory is mounted into the container at `/data/gitea`.
 
-The conf dir contains configuration files to configure how gitea works.
+The `d-gitea/data/` directory is mounted into the container at `/app/gitea/data`.
 
-The `app.ini` file needs to contain two secrets,
-which are scrubbed in `app.ini.sample`.
+To make the custom configuration file, follow the instructions mentioned in
+the "Secrets" section.
 
-The two secrets that are needed are:
 
-* an "internal token" secret, contained in `internal_token.secret`
-* a "secret key" secret, contained in `secret_key.secret`
-
-Use the `make_app_ini.sh` script to add the two secrets to the document.
-This will use sed to find/replace instances of the scrubbed secret,
-and will output the result to `custom/conf/app.ini`.
-
-```plain
-./make_app_ini.sh
-```
-
-This generates `custom/conf/app.ini`.
-
-When the container is run, this file will be at `/data/gitea/conf/app.ini`.
-
-## `custom/templates` template files
-
-The templates directory contains template files. These are gitea templates that 
-control how particular kinds of gitea pages look. For example, a template can
-be used to modify how the user page looks, or modify the layout of repository
-main pages.
-
-In the container, this will be at `/data/gitea/templates/`.
-
-## `custom/pages` gitea pages
-
-The pages directory contains one-off pages or static content that is 
-hosted by gitea at the same domain (git.charlesreid1.com) but 
-not necessarily incorporated into the gitea site.
-
-For example, a custom "about me" page could be added as a static .html file,
-and it would be hosted at `git.charlesreid1.com/about`.
-
-In the container, this will be at `/data/gitea/pages/`.
 
 ## Using the `docker-compose.yml` File
+
+### Standalone
 
 This directory contains a docker-compose file that can be used to run 
 a gitea server on port 3000.
@@ -212,43 +200,172 @@ structure. See below for more info.
 
 Use this as a project seed to add gitea containers to other docker pods.
 
+### pod-charlesreid1
+
+The main use of this repo is as a submodule in
+[pod-charlesreid1](https://github.com/charlesreid1-docker/pod-charlesreid1.git).
+
+This pod is set up by Ansible, which integrates well with the Jinja template approach.
+
 ## Notes on Custom Files
 
-The settings in the app.ini file are documented [here](https://docs.gitea.io/en-us/config-cheat-sheet/).
+The settings in the `app.ini` file are documented [here](https://docs.gitea.io/en-us/config-cheat-sheet/).
 
-An extensive sample app.ini file is [here](https://github.com/go-gitea/gitea/blob/master/custom/conf/app.ini.sample) (WARNING: this broke gitea).
+An extensive sample `app.ini` file is [here](https://github.com/go-gitea/gitea/blob/master/custom/conf/app.ini.sample) (WARNING: this broke gitea).
 
 The existing gitea templates are in the gitea repo under [templates/](https://github.com/go-gitea/gitea/tree/master/templates).
 These can be modified as needed and placed in the `custom/templates/` directory.
 
-## Backing Up and Restoring Gitea
+### custom templates directory
 
-Fortunately, gitea provides dump functionality.
+The templates directory `d-gitea/custom/templates` contains template files. 
+These are gitea templates that control how particular kinds of gitea pages look.
+For example, a template can be used to modify how the user page looks, or modify
+the layout of repository main pages.
 
-Unfortunately, there is no restore functionality.
+In the container, this will be at `/data/gitea/templates/`.
 
-See [pod-charlesreid1/utils-gitea](https://git.charlesreid1.com/docker/pod-charlesreid1/src/branch/master/utils-gitea)
-for proper backup/restore scripts.
+### custom gitea pages
 
-### Executive Summary
+The custom pages directory `d-gitea/custom/pages` contains one-off pages or static
+content that is hosted by the gitea instance, but not necessarily incorporated into
+the gitea site.
 
-Backup:
+For example, a custom "about me" page could be added as a static .html file,
+and it would be hosted at `git.charlesreid1.com/about`.
 
-* create a backup target directory in the container
-* create a gitea dump zip file using `gitea dump` command
-* create a gitea avatars zip file
-* copy everything in the backup target directory out of the container
-* remove the backup target directory
+In the container, this will be at `/data/gitea/pages/`.
 
-Restore:
 
-* create a restore target directory in the container
-* copy gitea dump and gitea avatars zip files into restore target dir
-* unpack dump zip, unpack avatars zip
-* unzip repositories zip (contained in dump zip)
-* restore `repositories/` folder to `/data/git/repositories/`
-* (skip restoring `custom/` files, version control takes care of that)
-* restore sqlite database using sql database dump
-* restore avatars
-* remove the restore target directory
+## Backing up and restoring gitea
+
+Running `gitea dump` command will dump files required for restoring an existing
+Gitea instance. Unfortunately, gitea's backup and restore functionality is an
+absolute dumpster fire.
+
+We do our best to walk through the process, but here is a summary:
+* On the old system:
+    * Create a backup file `gitea-dump.zip` using the very specific `gitea dump` incantation that works
+    * Move the backup file out of the gitea container
+* On the new system:
+    * Unzip the backup file `gitea-dump.zip`
+    * Put appropriate files in appropriate location
+    * Use the table below to determine where in the repo the gitea dump files should go,
+      and where they will be available inside the gitea container
+
+### Creating a Backup
+
+To create a gitea dump, connect to the docker container and get a bash shell as the user
+`git` via the docker exec command:
+
+```
+# connect to gitea container
+docker exec -it --user git name_of_gitea_container /bin/bash
+```
+
+This will give you a bash shell as the user `git`. Now create a gitea dump file
+(the gitea dump command requires you to be in `/app/gitea`, this assumes that the
+gitea executable is at the default location of `/app/gitea/gitea`):
+
+```
+# necessary
+cd /app/gitea
+# create gitea dump
+/app/gitea/gitea dump --file gitea-dump.zip --skip-repository
+```
+
+**IMPORTANT: The `--skip-repositories` flag means we are making the gitea dump
+way, way, way smaller, but it also means we need to back up and restore the
+repositories folder ourselves! (See below for instructions.)**
+
+Now copy the file out of the container, then remove it from the container:
+
+```
+# copy gitea dump out of container
+docker cp name_of_gitea_container:/app/gitea/gitea-dump.zip .
+
+# remove gitea dump
+docker exec -it name_of_gitea_container rm /app/gitea/gitea-dump.zip
+```
+
+### Contents of Dump File
+
+When the gitea dump file is unzipped, it will create the following files:
+
+* `app.ini`
+* `custom/` directory
+* `log/` directory (useless duplicate, already contained in `custom/` dir)
+* `data/` directory
+
+These files should map to the following locations in the docker container
+running the live gitea instance:
+
+```
+gitea dump file:        gitea live instance:
+----------------        --------------------
+app.ini                 /data/gitea/conf/app.ini
+custom/                 /data/gitea/
+log/                    (useless duplicate of custom/log/)
+data                    /app/gitea/data
+```
+
+### Restoring a Backup
+
+To restore a backup, copy the following files from the gitea dump
+to the following locations inside this repository:
+
+```
+gitea dump file:        d-gitea repo location:
+----------------        ----------------------
+app.ini                 d-gitea/custom/conf/app.ini
+custom/*                d-gitea/custom/*
+data                    d-gitea/data
+```
+
+(If you're running pod-charlesreid1, put these files in the
+specified location in the `d-gitea` submodule.)
+
+### Restoring repositories directory
+
+Note that when we created the gitea dump, we excluded the repositories themselves.
+This is because these will greatly inflate the size of our gitea dump and will make
+it much more difficult to store our backup files.
+
+Repository contents can be backed up separately as follows:
+
+* Log in to the old server
+* Back up the `/data/git/repositories` directory (copy and compress)
+* Copy the backup to the new server
+* Log in to the new server
+* Mount the `/data/git/repositories` folder
+
+Optionally, if you want to keep the repositories folder in its own location,
+modify `docker-compose.yml` to add the following line to the `gitea` container's
+`volumes` configuration:
+
+```
+services:
+  server:
+    image: gitea/gitea:latest
+
+    ...
+
+    volumes:
+      - "/path/to/repositories:/data/git/repositories"
+    
+    ...
+```
+
+This should make it easier to manage, back up, and restore the repositories folder.
+
+### Database backups
+
+We opt for the SQLite backend for gitea, which means the database
+is kept in a flat file on disk called `/data/gitea/gitea.db`.
+
+The location of this file and the format of the database are specified
+in the config file in `d-gitea/custom/conf/app.ini`.
+
+This file should not be edited, instead change the Jinja template
+`d-gitea/custom/conf/app.ini.j2` and remake `app.ini` from the template.
 
