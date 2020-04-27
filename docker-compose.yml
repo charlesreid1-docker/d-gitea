@@ -15,7 +15,8 @@ services:
       - gitea
     volumes:
       - "stormy_gitea_data:/data"
-       - "./custom:/data/gitea"
+      - "./custom:/data/gitea"
+      - "./data:/app/gitea/data"
     ports:
       - "3000:3000"
       - "222:22"
