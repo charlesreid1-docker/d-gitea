@@ -1,10 +1,9 @@
 site
 *.secret
-# ignore the real app.ini, only store the jinja template .j2 in the repo
+data/
 custom/conf/app.ini
-# ignore the gitea database file
 custom/gitea.db
-# ignore all the avatars
 custom/avatars
-# ignore the /app/gitea/data dir
-data
+custom/log/
+custom/public/
+custom/queues/
